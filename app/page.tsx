@@ -26,12 +26,10 @@ export default function Home() {
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 sm:px-6">
       <div className="bg-white w-full max-w-md sm:max-w-xl lg:max-w-2xl p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl">
 
-        {/* Title */}
         <h1 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-emerald-600">
           Tip Calculator
         </h1>
 
-        {/* Bill Input */}
         <div className="mb-8">
           <label className="block text-base sm:text-lg font-semibold mb-2 text-slate-700">
             Bill Amount
@@ -50,7 +48,6 @@ export default function Home() {
           />
         </div>
 
-        {/* Tip */}
         <div className="mb-8">
           <label className="block text-base sm:text-lg font-semibold mb-3 text-slate-700">
             Tip
@@ -73,7 +70,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Calculate */}
         <button
           onClick={calculateTip}
           className="
@@ -88,7 +84,6 @@ export default function Home() {
           Calculate
         </button>
 
-        {/* Result */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="bg-emerald-50 p-5 rounded-xl text-center">
             <p className="text-slate-600 mb-2 font-semibold text-base sm:text-lg">
