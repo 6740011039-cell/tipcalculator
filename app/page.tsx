@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import BillForm from "./BillForm";
+import HandleTip from "./HandleTip";
+import ShowSummary from "./ShowSummary";
 
 export default function Home() {
   const formatTHB = (amount: number) =>
@@ -23,87 +26,24 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 sm:px-6">
-      <div className="bg-white w-full max-w-md sm:max-w-xl lg:max-w-2xl p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl">
-
-        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-emerald-600">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-xl">
+        <h1 className="text-3xl font-bold text-center mb-8 text-emerald-600">
           Tip Calculator
         </h1>
 
-        <div className="mb-8">
-          <label className="block text-base sm:text-lg font-semibold mb-2 text-slate-700">
-            Bill Amount
-          </label>
-          <input
-            type="number"
-            value={bill}
-            onChange={(e) => setBill(e.target.value)}
-            placeholder="Enter bill amount"
-            className="
-              w-full p-4 rounded-xl
-              bg-slate-100
-              text-base sm:text-lg font-semibold
-              focus:outline-none focus:ring-2 focus:ring-emerald-400
-            "
-          />
-        </div>
+        <BillForm bill={bill} setBill={setBill} />
+        <HandleTip tipPercent={tipPercent} setTipPercent={setTipPercent} />
 
-        <div className="mb-8">
-          <label className="block text-base sm:text-lg font-semibold mb-3 text-slate-700">
-            Tip
-          </label>
-          <button
-            onClick={() => setTipPercent(tipPercent === 5 ? 0 : 5)}
-            className={`
-              w-full sm:w-auto
-              px-8 py-4 sm:py-3 rounded-xl
-              font-semibold text-base sm:text-lg
-              transition-all
-              ${
-                tipPercent === 5
-                  ? "bg-emerald-500 text-white shadow-md"
-                  : "bg-emerald-100 text-emerald-700"
-              }
-            `}
-          >
-            5%
-          </button>
-        </div>
-
-        <button
-          onClick={calculateTip}
-          className="
-            w-full py-5 rounded-xl
-            text-lg sm:text-xl font-bold
-            bg-gradient-to-r from-emerald-500 to-teal-500
-            text-white shadow-lg
-            hover:from-emerald-600 hover:to-teal-600
-            active:scale-95 transition-all mb-10
-          "
-        >
+        <button onClick={calculateTip} className="w-full py-4 bg-emerald-500 text-white rounded-xl mb-8">
           Calculate
         </button>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="bg-emerald-50 p-5 rounded-xl text-center">
-            <p className="text-slate-600 mb-2 font-semibold text-base sm:text-lg">
-              Tip Total
-            </p>
-            <p className="text-xl sm:text-2xl font-bold text-emerald-600">
-              {formatTHB(tipTotal)}
-            </p>
-          </div>
-
-          <div className="bg-teal-50 p-5 rounded-xl text-center">
-            <p className="text-slate-600 mb-2 font-semibold text-base sm:text-lg">
-              Bill Total
-            </p>
-            <p className="text-xl sm:text-2xl font-bold text-teal-600">
-              {formatTHB(billTotal)}
-            </p>
-          </div>
-        </div>
-
+        <ShowSummary
+          tipTotal={tipTotal}
+          billTotal={billTotal}
+          formatTHB={formatTHB}
+        />
       </div>
     </div>
   );
